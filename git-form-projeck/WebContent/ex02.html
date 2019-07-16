@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<style>
+/* Make the image fully responsive */
+.carousel-inner img {
+    width: 100%;
+    height: 100%;
+}
+</style>
+ 
+ 
+<!-- jQuery library -->
+<script
+    src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- Popper JS -->
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script
+    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <h3>탭, 움직이는 배너 실습</h3>
+    <h4>참고 http://www.hrd.go.kr/hrdp/ma/pmmao/main2.do</h4>
+    <div class="container">
+        <div class="row">
+            <!-- 탭 -->
+            <div class="col-sm-8">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item"><a class="nav-link" data-toggle="tab"
+                        href="#menu1">Menu 1</a></li>
+                    <li class="nav-item"><a class="nav-link" data-toggle="tab"
+                        href="#menu2">Menu 2</a></li>
+                </ul>
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <!-- 첫번째 탭 -->
+                    <div class="tab-pane container" id="menu1">
+                        tab1 내용
+                    </div>
+                    
+                    <!-- 두전째 탭 -->
+                    <div class="tab-pane container" id="menu2">
+                        <!-- 시(도) 선택버턴 -->
+                        <div>
+                            <button id="btnSeoul" class="btn btn-info">서울</button>
+                            <button class="btn btn-info">인천</button>
+                        </div>
+                        <div>
+                            <div class="form-group">
+                                <!-- 선택시(도) -->
+                                <label id="targetLabel" for="comment"></label>
+                                <!-- 선택시(도) 항목 -->
+                                <textarea id="targetTextarea" class="form-control" rows="5"></textarea>
+                                <button class="btn btn-secondary">검색</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+ 
+            </div>
+ 
+            <!-- 배너 -->
+            <div class="col-sm-4">
+ 
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+ 
+                    <!-- Indicators -->
+                    <ul class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                    </ul>
+ 
+                    <!-- The slideshow -->
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="la.jpg" alt="Los Angeles" width="1100" height="500">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="chicago.jpg" alt="Chicago" width="1100" height="500">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="ny.jpg" alt="New York" width="1100" height="500">
+                        </div>
+                    </div>
+ 
+                    <!-- Left and right controls -->
+                    <a class="carousel-control-prev" href="#myCarousel"
+                        data-slide="prev"> <span class="carousel-control-prev-icon"></span>
+                    </a> <a class="carousel-control-next" href="#myCarousel"
+                        data-slide="next"> <span class="carousel-control-next-icon"></span>
+                    </a>
+                </div>
+ 
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    $('#btnSeoul').click(function() {
+        console.log('#btnSeoul click');
+        $('#targetLabel').text('서울');
+        let str = '';
+        str += '강남구';
+        str += '\t강동구';
+        str += '\n강북구';
+        str += '\t강서구';
+        $('#targetTextarea').val(str);
+    });
+</script>
+</html>
+
+
