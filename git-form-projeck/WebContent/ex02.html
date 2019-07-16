@@ -1,120 +1,655 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="utf-8">
 <title>Insert title here</title>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
-    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <style>
 /* Make the image fully responsive */
 .carousel-inner img {
-    width: 100%;
-    height: 100%;
+	width: 100%;
+	height: 100%;
 }
 </style>
- 
- 
+
+
 <!-- jQuery library -->
 <script
-    src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <!-- Popper JS -->
 <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <!-- Latest compiled JavaScript -->
 <script
-    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <h3>��, �����̴� ��� �ǽ�</h3>
-    <h4>���� http://www.hrd.go.kr/hrdp/ma/pmmao/main2.do</h4>
-    <div class="container">
-        <div class="row">
-            <!-- �� -->
-            <div class="col-sm-8">
-                <ul class="nav nav-tabs">
-                    <li class="nav-item"><a class="nav-link" data-toggle="tab"
-                        href="#menu1">Menu 1</a></li>
-                    <li class="nav-item"><a class="nav-link" data-toggle="tab"
-                        href="#menu2">Menu 2</a></li>
-                </ul>
-                <!-- Tab panes -->
-                <div class="tab-content">
-                    <!-- ù��° �� -->
-                    <div class="tab-pane container" id="menu1">
-                        tab1 ����
-                    </div>
-                    
-                    <!-- ����° �� -->
-                    <div class="tab-pane container" id="menu2">
-                        <!-- ��(��) ���ù��� -->
-                        <div>
-                            <button id="btnSeoul" class="btn btn-info">����</button>
-                            <button class="btn btn-info">��õ</button>
-                        </div>
-                        <div>
-                            <div class="form-group">
-                                <!-- ���ý�(��) -->
-                                <label id="targetLabel" for="comment"></label>
-                                <!-- ���ý�(��) �׸� -->
-                                <textarea id="targetTextarea" class="form-control" rows="5"></textarea>
-                                <button class="btn btn-secondary">�˻�</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
- 
-            </div>
- 
-            <!-- ��� -->
-            <div class="col-sm-4">
- 
-                <div id="myCarousel" class="carousel slide" data-ride="carousel">
- 
-                    <!-- Indicators -->
-                    <ul class="carousel-indicators">
-                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                        <li data-target="#myCarousel" data-slide-to="1"></li>
-                        <li data-target="#myCarousel" data-slide-to="2"></li>
-                    </ul>
- 
-                    <!-- The slideshow -->
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="la.jpg" alt="Los Angeles" width="1100" height="500">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="chicago.jpg" alt="Chicago" width="1100" height="500">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="ny.jpg" alt="New York" width="1100" height="500">
-                        </div>
-                    </div>
- 
-                    <!-- Left and right controls -->
-                    <a class="carousel-control-prev" href="#myCarousel"
-                        data-slide="prev"> <span class="carousel-control-prev-icon"></span>
-                    </a> <a class="carousel-control-next" href="#myCarousel"
-                        data-slide="next"> <span class="carousel-control-next-icon"></span>
-                    </a>
-                </div>
- 
-            </div>
-        </div>
-    </div>
+	<!--  
+	<h3>탭, 움직이는 배너 실습</h3>
+	<h4>참고 http://www.hrd.go.kr/hrdp/ma/pmmao/main2.do</h4>
+	-->
+	<div class="container">
+		<div class="row">
+			<!-- 탭 -->
+			<div class="col-sm-8">
+				<ul class="nav nav-tabs">
+					<li class="nav-item"><a class="nav-link" data-toggle="tab"
+						href="#menu1">Menu 1</a></li>
+					<li class="nav-item"><a class="nav-link" data-toggle="tab"
+						href="#menu2">Menu 2</a></li>
+				</ul>
+				<!-- Tab panes -->
+				<div class="tab-content">
+					<!-- 첫번째 탭 -->
+					<div class="tab-pane container" id="menu1">
+						<div class="form-group">
+							훈련기관<input type="text" class="form-control"> 
+							훈련과정<input type="text" class="form-control"><br> 
+								훈련기관 <select  onchange="categoryChange1(this)">
+								<option>전체</option>
+								<option value="a">내일배움카드(구직자)</option>
+								<option value="b">국가기간전략산업직종</option>
+								<option value="c">컨소시엄 채용예정자</option>
+								<option value="d">폴리텍대학훈련</option>
+								<option value="e">청년취업아카데미</option>
+								<option value="f">장애인직업능력지원훈련</option>
+								<option value="g">내일배움카드(구직자)</option>
+							</select> <a id="tip" href="#" data-toggle="popover"
+								data-content="Tip 버튼에 자세한 설명이 표시됩니다. 특화과정은 내일배움카드, 국가기간전략산업 유형을 선택시에 활성화 됩니다."></a>
+							<span class="badge badge-secondary">TIP</span> 
+							특화과정 <select id="one">
+								<option>전체　　　　</option>
+							</select>
+						</div>
+						<div class="form-group">
+							훈련지역 <select  onchange="categoryChange2(this)">
+								<option>전체</option>
+								<option value="a">서울</option>
+								<option value="b">경기</option>
+								<option value="c">전라도</option>
+								<option value="d">충청도</option>
+								<option value="e">제주</option>
+							</select> 
+							<select id="two">
+								<option>전체</option>
+							</select>
+						</div>
+						<div class="form-group">
+							NCS직무 <select>
+								<option>전체</option>
+								<option>엄청긴 지역명 한</option>
+								<option></option>
+								<option></option>
+							</select> <select>
+								<option>전체</option>
+								<option>엄청긴 지역명 한</option>
+								<option></option>
+								<option></option>
+							</select> <select>
+								<option>전체</option>
+								<option>엄청긴 지역명 한</option>
+								<option></option>
+								<option></option>
+							</select>
+							<button class="btn btn-light btn-sm">직무 선택하기</button>
+						</div>
+						<div>
+							훈련시작 <input id="beginDate" type="date"> <img src="./images/date.png"> ~ <input id="endDate"
+								type="date" value="2019-10-16"> <img src="./images/date.png">
+							<button class="btn btn-light btn-sm" id="btnWeek">1주일</button>
+							<button class="btn btn-light btn-sm" id="btnhd">1개월</button>
+							<button class="btn btn-light btn-sm" id="btnsd">3개월</button>
+						</div>
+						<br>
+						<center><div><button class="btn btn-dark btn-lg">검색</button></div></center>
+					</div>
+
+					<!-- 두전째 탭 -->
+					<div class="tab-pane container" id="menu2">
+						<!-- 시(도) 선택버턴 -->
+						<div>
+							<button id="btnSeoul" class="btn btn-info btn-sm">서울</button>
+							<button id="btnincheon" class="btn btn-info btn-sm">인천</button>
+							<button id="btngg" class="btn btn-info btn-sm">경기</button>
+							<button id="btngangwon" class="btn btn-info btn-sm">강원</button>
+							<button id="btnsejong" class="btn btn-info btn-sm">세종</button>
+							<button id="btncb" class="btn btn-info btn-sm">충북</button><br>
+							<div>
+							<br>
+							<button id="btncn" class="btn btn-info btn-sm">충남</button>
+							<button id="btndj" class="btn btn-info btn-sm">대전</button>
+							<button id="btndg" class="btn btn-info btn-sm">대구</button>
+							<button id="btngb" class="btn btn-info btn-sm">경북</button>
+							<button id="btngn" class="btn btn-info btn-sm">경남</button>
+							<button id="btnws" class="btn btn-info btn-sm">울산</button><br>
+							</div>
+							<br>
+							<button id="btnbs" class="btn btn-info btn-sm">부산</button>
+							<button id="btnjb" class="btn btn-info btn-sm">전북</button>
+							<button id="btnjn" class="btn btn-info btn-sm">전남</button>
+							<button id="btngj" class="btn btn-info btn-sm">광주</button>
+							<button id="btnjj" class="btn btn-info btn-sm">제주</button>
+						</div>
+						<div>
+							<div class="form-group">
+								<!-- 선택시(도) -->
+								<label id="targetLabel" for="comment"></label>
+								<!-- 선택시(도) 항목 -->
+								<textarea id="targetTextarea" class="form-control" rows="5"></textarea>
+								<button class="btn btn-secondary">검색</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+			<!-- 배너 -->
+			<div class="col-sm-4">
+
+				<div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+					<!-- Indicators -->
+					<ul class="carousel-indicators">
+						<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+						<li data-target="#myCarousel" data-slide-to="1"></li>
+						<li data-target="#myCarousel" data-slide-to="2"></li>
+						<li data-target="#myCarousel" data-slide-to="3"></li>
+						<li data-target="#myCarousel" data-slide-to="4"></li>
+						<li data-target="#myCarousel" data-slide-to="5"></li>
+						<li data-target="#myCarousel" data-slide-to="6"></li>
+					</ul>
+
+					<!-- The slideshow -->
+					<div class="carousel-inner">
+						<div class="carousel-item active">
+							<img src="./images/1컨퍼런스-웹배너_참여기관-모집(340-378).jpg"
+								alt="Los Angeles" width="1100" height="500">
+						</div>
+						<div class="carousel-item">
+							<img src="./images/2.jpg" alt="Chicago" width="1100" height="500">
+						</div>
+						<div class="carousel-item">
+							<img src="./images/3.jpg" alt="New York" width="1100"
+								height="500">
+						</div>
+						<div class="carousel-item">
+							<img src="./images/4.jpg" alt="New York" width="1100"
+								height="500">
+						</div>
+						<div class="carousel-item">
+							<img src="./images/5.jpg" alt="New York" width="1100"
+								height="500">
+						</div>
+						<div class="carousel-item">
+							<img src="./images/6.jpg" alt="New York" width="1100"
+								height="500">
+						</div>
+					</div>
+
+					<!-- Left and right controls -->
+					<a class="carousel-control-prev" href="#myCarousel"
+						data-slide="prev"> <span class="carousel-control-prev-icon"></span>
+					</a> <a class="carousel-control-next" href="#myCarousel"
+						data-slide="next"> <span class="carousel-control-next-icon"></span>
+					</a>
+				</div>
+
+			</div>
+		</div>
+	</div>
 </body>
 <script>
-    $('#btnSeoul').click(function() {
-        console.log('#btnSeoul click');
-        $('#targetLabel').text('����');
-        let str = '';
-        str += '������';
-        str += '\t������';
-        str += '\n���ϱ�';
-        str += '\t������';
-        $('#targetTextarea').val(str);
-    });
+	/*
+	 var today = new Date();
+	 ​
+	 let d = new Date();
+	 let year = d.getFullYear();
+	 let month = d.getMonth()+1;
+	 let day = d.getDate();
+	 $('#beginDate').val(`${year}-${month}-${day}`)
+	 $('#endDate').val(`${year}-${month}-${day}`)
+	 */
+
+	/*
+	let beginDate = d;
+	let endDate = null;
+	$('#btnWeek').clikc(function(){
+	endDate.setDate(beginDate.getDate()+7);
+	$('#endDate').val(`${endDate.getFullYear}-${endDate.getMonth}-${endDate.getDay()}`)
+	});
+	 */
+
+	$('#tip').popover();
+
+	$('#btnSeoul').click(function() {
+		console.log('#btnSeoul click');
+		$('#targetLabel').text('서울');
+		let str = '';
+		str += '강남구';
+		str += '\t강동구';
+		str += '\n강북구';
+		str += '\t강서구';
+		str += '\n관악구';
+		str += '\t광진구';
+		str += '\n구로구';
+		str += '\t금천구';
+		str += '\n노원구';
+		str += '\t도봉구';
+		str += '\n동대문구';
+		str += '\t동작구';
+		str += '\n마포구';
+		str += '\t서대문구';
+		str += '\n서초구';
+		str += '\t성동구';
+		str += '\n성북구';
+		str += '\t송파구';
+		str += '\n양천구';
+		str += '\t영등포구';
+		str += '\n용산구';
+		str += '\t은평구';
+		str += '\n종로구';
+		str += '\t종구';
+		str += '\n중랑구';
+		$('#targetTextarea').val(str);
+	});
+
+	$('#btnincheon').click(function() {
+		console.log('#btnincheon click');
+		$('#targetLabel').text('인천');
+		let str = '';
+		str += '강화군';
+		str += '\t계양구';
+		str += '\n남동구';
+		str += '\t동구';
+		str += '\n미추홀구';
+		str += '\t부평구';
+		str += '\n서구 ';
+		str += '\t연수구';
+		str += '\n옹진군';
+		str += '\t중구';
+		$('#targetTextarea').val(str);
+	});
+
+	$('#btngg').click(function() {
+		console.log('#btngg click');
+		$('#targetLabel').text('경기');
+		let str = '';
+		str += '가평군';
+		str += '\t고양시 덕양구';
+		str += '\n고양시 일산구 ';
+		str += '\t고양시 일산동구';
+		str += '\n고양시 일산서구';
+		str += '\t고양시';
+		str += '\n과천시';
+		str += '\t광명시';
+		str += '\n광주시';
+		str += '\t구리시';
+		str += '\n군포시';
+		str += '\t김포시';
+		str += '\n남양주시';
+		str += '\t동두천시';
+		str += '\n부천시';
+		str += '\t성남시 분당구';
+		str += '\n성남시 수정구 ';
+		str += '\t성남시 중원구';
+		str += '\n성남시';
+		str += '\t수원시 권선구';
+		str += '\n수원시 영통구 ';
+		str += '\t수원시 장안구';
+		str += '\n수원시 팔달구 ';
+		str += '\t시흥시';
+		str += '\n안산시 단원구 ';
+		str += '\t안산시 상록구';
+		str += '\n안산시';
+		str += '\t안성시';
+		str += '\n안양시 동안구 ';
+		str += '\t안양시 만안구';
+		str += '\n안양시';
+		str += '\t양주군';
+		str += '\n양주시';
+		str += '\t양평군';
+		str += '\n여주시';
+		str += '\t연천군';
+		str += '\n오산시';
+		str += '\t용인시 기흥구';
+		str += '\n용인시 수지구 ';
+		str += '\t용인시 처인구';
+		str += '\n용인시';
+		str += '\t의왕시';
+		str += '\n의정부시';
+		str += '\t이천시';
+		str += '\n파주시';
+		str += '\t평택시';
+		str += '\n포천군';
+		str += '\t포천시';
+		str += '\n하남시';
+		str += '\t화성시';
+		$('#targetTextarea').val(str);
+	});
+
+	$('#btngangwon').click(function() {
+		console.log('#btngangwon click');
+		$('#targetLabel').text('강원');
+		let str = '';
+		str += '강릉시';
+		str += '\t고성군';
+		str += '\n동해시';
+		str += '\t삼척시';
+		str += '\n속초시';
+		str += '\t양구군';
+		str += '\n양양군';
+		str += '\t영월군';
+		str += '\n원주시';
+		str += '\t인제군';
+		str += '\n정선군';
+		str += '\t철원군';
+		str += '\n춘천시';
+		str += '\t태백시';
+		str += '\n평창군';
+		str += '\t홍천군';
+		str += '\n화천군';
+		str += '\t횡성군';
+		$('#targetTextarea').val(str);
+	});
+
+	$('#btnsejong').click(function() {
+		console.log('#btnsejong click');
+		$('#targetLabel').text('세종');
+		let str = '세종';
+		$('#targetTextarea').val(str);
+	});
+
+	$('#btncb').click(function() {
+		console.log('#btncb click');
+		$('#targetLabel').text('충북');
+		let str = '';
+		str += '괴산군';
+		str += '\t단양군';
+		str += '\n보은군';
+		str += '\t영동군';
+		str += '\n옥천군';
+		str += '\t음성군';
+		str += '\n제천시';
+		str += '\t증평군';
+		str += '\n진천군';
+		str += '\t청원군';
+		str += '\n청주시 상당구 ';
+		str += '\t청주시 서원구';
+		str += '\n청주시 청원구 ';
+		str += '\t청주시 흥덕구';
+		str += '\n청주시';
+		str += '\t충주시';
+		$('#targetTextarea').val(str);
+	});
+
+	$('#btncn').click(function() {
+		console.log('#btncn click');
+		$('#targetLabel').text('충남');
+		let str = '';
+		str += '당진군';
+		str += '\t당진시';
+		str += '\n보령시';
+		str += '\t부여군';
+		str += '\n서산시';
+		str += '\t서천군';
+		str += '\n아산시';
+		str += '\t연기군';
+		str += '\n예산군';
+		str += '\t천안시 동남구';
+		str += '\n천안시 서북구 ';
+		str += '\t천안시';
+		str += '\n청양군';
+		str += '\t태안군';
+		str += '\n홍성군';
+		$('#targetTextarea').val(str);
+	});
+
+	$('#btndj').click(function() {
+		console.log('#btndj click');
+		$('#targetLabel').text('대전');
+		let str = '';
+		str += '대덕구';
+		str += '\t동구';
+		str += '\n서구 ';
+		str += '\t유성구';
+		str += '\n중구';
+		$('#targetTextarea').val(str);
+	});
+
+	$('#btndg').click(function() {
+		console.log('#btndg click');
+		$('#targetLabel').text('대구');
+		let str = '';
+		str += '남구';
+		str += '\t달서구';
+		str += '\n달성군';
+		str += '\t동구';
+		str += '\n북구 ';
+		str += '\t서구';
+		str += '\n수성구';
+		str += '\t중구';
+		$('#targetTextarea').val(str);
+	});
+
+	$('#btngb').click(function() {
+		console.log('#btngb click');
+		$('#targetLabel').text('경북');
+		let str = '';
+		str += '경산시';
+		str += '\t경주시';
+		str += '\n고령군';
+		str += '\t구미시';
+		str += '\n군위군';
+		str += '\t김천시';
+		str += '\n문경시';
+		str += '\t봉화군';
+		str += '\n상주시';
+		str += '\t성주군';
+		str += '\n안동시';
+		str += '\t영덕군';
+		str += '\n영양군';
+		str += '\t영주시';
+		str += '\n영천시';
+		str += '\t예천군';
+		str += '\n울릉군';
+		str += '\t울진군';
+		str += '\n의성군';
+		str += '\t청도군';
+		str += '\n청송군';
+		str += '\t칠곡군';
+		str += '\n포항시 남구 ';
+		str += '\t포항시 북구';
+		str += '\n포항시';
+		$('#targetTextarea').val(str);
+	});
+
+	$('#btngn').click(function() {
+		console.log('#btngn click');
+		$('#targetLabel').text('경남');
+		let str = '';
+		str += '창원시 마산합포구';
+		str += '\t창원시 마산회원구';
+		str += '\n창원시 성산구 ';
+		str += '\t창원시 의창구';
+		str += '\n창원시 진해구 ';
+		str += '\t창원시';
+		str += '\n통영시';
+		str += '\t하동군';
+		str += '\n함안군';
+		str += '\t함양군';
+		str += '\n합천군';
+		$('#targetTextarea').val(str);
+	});
+
+	$('#btnws').click(function() {
+		console.log('#btnws click');
+		$('#targetLabel').text('울산');
+		let str = '';
+		str += '남구 ';
+		str += '\t동구';
+		str += '\n북구 ';
+		str += '\t울주군';
+		str += '\n중구';
+		$('#targetTextarea').val(str);
+	});
+
+	$('#btnbs').click(function() {
+		console.log('#btnbs click');
+		$('#targetLabel').text('부산');
+		let str = '';
+		str += '강서구';
+		str += '\t금정구';
+		str += '\n기장군';
+		str += '\t남구';
+		str += '\n동구 ';
+		str += '\t동래구';
+		str += '\n부산진구 ';
+		str += '\t북구';
+		str += '\n사상구';
+		str += '\t사하구';
+		str += '\n서구 ';
+		str += '\t수영구';
+		str += '\n연제구';
+		str += '\t영도구';
+		str += '\n중구 ';
+		str += '\t해운대구';
+		$('#targetTextarea').val(str);
+	});
+
+	$('#btnjb').click(function() {
+		console.log('#btnjb click');
+		$('#targetLabel').text('전북');
+		let str = '';
+		str += '무주군';
+		str += '\t부안군';
+		str += '\n순창군';
+		str += '\t완주군';
+		str += '\n익산시';
+		str += '\t임실군';
+		str += '\n장수군';
+		str += '\t전주시 덕진구';
+		str += '\n전주시 완산구 ';
+		str += '\t전주시';
+		str += '\n정읍시';
+		str += '\t진안군';
+		str += '\n고창군';
+		str += '\t군산시';
+		str += '\n김제시';
+		str += '\t남원시';
+		$('#targetTextarea').val(str);
+	});
+
+	$('#btnjn').click(function() {
+		console.log('#btnjn click');
+		$('#targetLabel').text('전남');
+		let str = '';
+		str += '강진군';
+		str += '\t고흥군';
+		str += '\n곡성군';
+		str += '\t광양시';
+		str += '\n구례군';
+		str += '\t나주시';
+		str += '\n담양군';
+		str += '\t목포시';
+		str += '\n무안군';
+		str += '\t보성군';
+		str += '\n순천시';
+		str += '\t신안군';
+		str += '\n여수시';
+		str += '\t영광군';
+		str += '\n영암군';
+		str += '\t완도군';
+		str += '\n장성군';
+		str += '\t장흥군';
+		str += '\n진도군';
+		str += '\t함평군';
+		str += '\n해남군';
+		str += '\t화순군';
+		$('#targetTextarea').val(str);
+	});
+
+	$('#btngj').click(function() {
+		console.log('#btngj click');
+		$('#targetLabel').text('광주');
+		let str = '';
+		str += '광산구';
+		str += '\t남구';
+		str += '\n동구 ';
+		str += '\t북구';
+		str += '\n서구';
+		$('#targetTextarea').val(str);
+	});
+
+	$('#btnjj').click(function() {
+		console.log('#btnjj click');
+		$('#targetLabel').text('제주');
+		let str = '';
+		str += '서귀포시 ';
+		str += '\t제주시';
+		$('#targetTextarea').val(str);
+	});
+
+	document.getElementById('beginDate').value = new Date().toISOString()
+			.substring(0, 10);
+	;
 </script>
+<!-- 1번 셀렉트 -->
+<script>
+function categoryChange1(e) {
+	  var one_a = ["전체", "일반고 특화과정", "4차산업혁명선도인력양성과정", "중장년특화과정"];
+	  var one_b = [""];
+	  var one_c = [""];
+	  var one_d = [""];
+	  var one_e = [""];
+	  var one_f = [""];
+	  var one_g = [""];
+	  var target = document.getElementById("one");
+	 
+	  if(e.value == "a") var d = one_a;
+	  else if(e.value == "b") var d = one_b;
+	  else if(e.value == "c") var d = one_c;
+	 
+	  target.options.length = 0;
+	 
+	  for (x in d) {
+	    var opt = document.createElement("option");
+	    opt.value = d[x];
+	    opt.innerHTML = d[x];
+	    target.appendChild(opt);
+	  } 
+	}
+	
+<!-- 2번 셀렉트 -->
+
+function categoryChange2(e) {
+	  var two_a = ["시군구", "강남구", "강동구", "강북구", "강서구"];
+	  var two_b = ["시군구","oo구","oo시","oo시","oo시"];
+	  var two_c = ["시군구","xx구","xx시","xx시","xx시"];
+	  var two_d = ["시군구","ㅁㅁ구","ㅁㅁ시","ㅁㅁ시","ㅁㅁ시"];
+	  var two_e = ["시군구","..구","..시","..시","..시"];
+	  var target = document.getElementById("two");
+	 
+	  if(e.value == "a") var d = two_a;
+	  else if(e.value == "b") var d = two_b;
+	  else if(e.value == "c") var d = two_c;
+	  else if(e.value == "d") var d = two_d;
+	  else if(e.value == "e") var d = two_e;
+	 
+	  target.options.length = 0;
+	 
+	  for (x in d) {
+	    var opt = document.createElement("option");
+	    opt.value = d[x];
+	    opt.innerHTML = d[x];
+	    target.appendChild(opt);
+	  } 
+	}
+	
+</script>
+
 </html>
 
 
